@@ -32,5 +32,11 @@ class TennisGame
         if($this->resultado1==1 && $this->resultado2==1){
             return "Fifteen all";
         }
+        if($this->resultado1==2 && $this->resultado2==1){
+            return "Thirty - Fifteen";
+        }
+        if($this->resultado1==2 && $this->resultado2==2){
+            return "Thirty all";
+        }
     }
 }
