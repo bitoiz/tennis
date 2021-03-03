@@ -29,5 +29,8 @@ class TennisGame
         if($this->resultado1==1 && $this->resultado2==0){
             return "Fifteen - Love";
         }
+        if($this->resultado1==1 && $this->resultado2==1){
+            return "Fifteen all";
+        }
     }
 }
