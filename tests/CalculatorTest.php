@@ -13,9 +13,9 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function Devuelv(){
+    public function DevuelvePrimerJugador(){
         $partido =new TennisGame(M,C);
-        $result = $partido->nombre1
+        $result = $partido->nombre1;
 
         $this->assertEquals("M", $result);
     }
