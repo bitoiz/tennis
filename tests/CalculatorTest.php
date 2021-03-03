@@ -34,4 +34,12 @@ final class CalculatorTest extends TestCase
         $result = $partido->getScore();
         $this->assertEquals("Love all", $result);
     }
+    /**
+     * @test
+     */
+    public function Resultado_15_0(){
+        $partido =new TennisGame("M","C",1,0);
+        $result = $partido->getScore();
+        $this->assertEquals("Fifteen - Love", $result);
+    }
 }
