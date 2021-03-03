@@ -17,6 +17,6 @@ class TennisGame
     public function __construct(string $Jugadoruno,string $jugadordos)
     {
        $this->nombre1= $Jugadoruno;
-       $this->nombre2= $Jugadoruno;
+       $this->nombre2= $jugadordos;
     }
 }
