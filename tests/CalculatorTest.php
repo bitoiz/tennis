@@ -57,7 +57,7 @@ final class CalculatorTest extends TestCase
     public function Resultado_30_15(){
         $partido =new TennisGame("M","C",1,1);
         $result = $partido->getScore();
-        $this->assertEquals("Fifteen all", $result);
+        $this->assertEquals("Thirty - Fifteen", $result);
     }
 
 }
