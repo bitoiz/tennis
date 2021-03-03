@@ -19,4 +19,8 @@ class TennisGame
        $this->nombre1= $Jugadoruno;
        $this->nombre2= $jugadordos;
     }
+
+    public function getScore(){
+        return "Love all";
+    }
 }
