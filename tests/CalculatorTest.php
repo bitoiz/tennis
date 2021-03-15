@@ -72,9 +72,25 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function Resultado_40_30(){
-        $partido =new TennisGame("M","C",2,2);
+        $partido =new TennisGame("M","C",3,2);
         $result = $partido->getScore();
-        $this->assertEquals("Thirty all", $result);
+        $this->assertEquals("Forty - Thirty", $result);
+    }
+    /**
+     * @test
+     */
+    public function Resultado_40_40(){
+        $partido =new TennisGame("M","C",3,3);
+        $result = $partido->getScore();
+        $this->assertEquals("Deuce", $result);
     }
 
+    /**
+     * @test
+     */
+    public function ventaja1(){
+        $partido =new TennisGame("M","C",4,4);
+        $result = $partido->getScore();
+        $this->assertEquals("Deuce", $result);
+    }
 }

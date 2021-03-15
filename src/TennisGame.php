@@ -10,6 +10,8 @@ class TennisGame
  public $nombre2;
  protected $resultado1;
  protected $resultado2;
+ protected $deuce1;
+ protected $deuce2;
 
     /**
      * TennisGame constructor.
@@ -38,5 +40,11 @@ class TennisGame
         if($this->resultado1==2 && $this->resultado2==2){
             return "Thirty all";
         }
+        if($this->resultado1==3 && $this->resultado2==2){
+            return "Forty - Thirty";
+        }
+        if($this->resultado1==3 && $this->resultado2==3){
+            return "Deuce";
     }
+}
 }
