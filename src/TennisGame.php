@@ -43,23 +43,19 @@ class TennisGame
         }
         return $Resultado;
     }
+
+
   function  wonPoint(string $jugador) : void
     {
        if  ($this->jugador1->getResultado()!=3 && $this->jugador2->getResultado() != 3 ){
            $this->wonPointDepurado($jugador,$this->jugador1);
            $this->wonPointDepurado($jugador,$this->jugador2);
        }else{
-           if($jugador==$this->jugador1->getNombre()){
-               $numero=$this->jugador1->getDeuce();
-               $this->jugador1->setDeuce($numero+1);
-           }
-           if($jugador==$this->jugador2->getNombre()){
-               $numero=$this->jugador2->getDeuce();
-               $this->jugador2->setDeuce($numero+1);
-           }
+           $this->wonPointDeuceDepurado($jugador,$this->jugador1);
+           $this->wonPointDeuceDepurado($jugador,$this->jugador2);
        }
-
     }
+
     function  wonPointDepurado(string $nombre , Jugador $jugador) : void{
         if ($nombre==$jugador->getNombre()){
             $numero=$jugador->getResultado();
@@ -67,9 +63,23 @@ class TennisGame
         }
     }
 
-    private function Deuce():string{
-        return "Deuce";
+    function  wonPointDeuceDepurado(string $nombre , Jugador $jugador) : void{
+        if ($nombre==$jugador->getNombre()){
+            $numero=$jugador->getDeuce();
+            $jugador->setDeuce($numero+1);
+        }
     }
+
+    private function Deuce():string{
+        if ($this->jugador1->getDeuce()==$this->jugador2->getDeuce())
+        return "Deuce";
+        if ($this->jugador1->getDeuce()>$this->jugador2->getDeuce())
+            return "Ventaja " . $this->jugador1->getNombre();
+        if ($this->jugador1->getDeuce()<$this->jugador2->getDeuce())
+            return "Ventaja " . $this->jugador2->getNombre();
+    }
+
+
 
     private function TraductorPunto(int $numero):string
     {

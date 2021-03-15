@@ -13,7 +13,7 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function Resultado_0_0(){
+    public function TestResultado_0_0(){
         $partido =new TennisGame("M","C",0,0);
         $result = $partido->getScore();
         $this->assertEquals("Love all", $result);
@@ -21,16 +21,17 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function Resultado_15_0(){
-        $partido =new TennisGame("M","C",1,0);
-        $result = $partido->getScore();
+    public function TestResultado_15_0(){
+        $partido =new TennisGame("M","C",0,0);
+        $partido->wonPoint("M");
+        $result =(string)$partido->jugador1->getResultado();
         $this->assertEquals("Fifteen - Love", $result);
     }
 
     /**
      * @test
      */
-    public function Resultado_15_15(){
+    public function TestResultado_15_15(){
         $partido =new TennisGame("M","C",1,1);
         $result = $partido->getScore();
         $this->assertEquals("Fifteen all", $result);
@@ -38,7 +39,7 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function Resultado_30_15(){
+    public function TestResultado_30_15(){
         $partido =new TennisGame("M","C",2,1);
         $result = $partido->getScore();
         $this->assertEquals("Thirty - Fifteen", $result);
@@ -47,7 +48,7 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function Resultado_30_30(){
+    public function TestResultado_30_30(){
         $partido =new TennisGame("M","C",2,2);
         $result = $partido->getScore();
         $this->assertEquals("Thirty all", $result);
@@ -55,7 +56,7 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function Resultado_40_30(){
+    public function TestResultado_40_30(){
         $partido =new TennisGame("M","C",3,2);
         $result = $partido->getScore();
         $this->assertEquals("Forty - Thirty", $result);
@@ -64,10 +65,19 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function Deuce(){
+    public function TestDeuce(){
         $partido =new TennisGame("M","C",3,2);
         $result = $partido->getScore();
         $this->assertEquals("Deuce", $result);
+    }
+    /**
+     * @test
+     */
+    public function TestVentaja1(){
+        $partido =new TennisGame("M","C",3,3);
+        $partido->wonPoint("M");
+        $result = $partido->getScore();
+        $this->assertEquals("Ventaja", $result);
     }
     /**
      * @test
