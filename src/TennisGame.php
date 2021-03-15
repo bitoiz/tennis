@@ -6,58 +6,54 @@ namespace Deg540\PHPTestingBoilerplate;
 
 class TennisGame
 {
- public $nombre1;
- public $nombre2;
- protected $resultado1;
- protected $resultado2;
- protected $deuce1;
- protected $deuce2;
+ public Jugador $jugador1;
+ public Jugador $jugador2;
 
     /**
      * TennisGame constructor.
      */
     public function __construct(string $Jugadoruno,string $jugadordos,int $nu1,int $nu2)
-    {
-       $this->nombre1= $Jugadoruno;
-       $this->nombre2= $jugadordos;
-       $this->resultado1= $nu1;
-       $this->resultado2= $nu2;
+    {;
+       $this->jugador1= new Jugador($Jugadoruno, $nu1);
+       $this->jugador2= new Jugador($jugadordos, $nu2);
 
     }
 
     public function getScore(){
-        $puntuacion1=$this->TraductorPunto($this->resultado1);
-        $puntuacion2=$this->TraductorPunto($this->resultado2);
+        $puntuacion1=$this->TraductorPunto($this->jugador1->getResultado());
+        $puntuacion2=$this->TraductorPunto($this->jugador2->getResultado());
         $Resultado="";
+
         if($puntuacion1 != $puntuacion2){
             $Resultado=$Resultado . $puntuacion1 . " - " . $puntuacion2;
-        } if ( $puntuacion1 == $puntuacion2){
-            $Resultado=$Resultado . $puntuacion1 . "all";
+        }
+        if ( $puntuacion1 == $puntuacion2 && $puntuacion1<2){
+            $Resultado=$Resultado . $puntuacion1 . " all";
+        }
+        if ($puntuacion1 =3  && $puntuacion1 =3){
+            $Resultado = $this->Deuce();
         }
         return $Resultado;
-        if($this->resultado1==1 && $this->resultado2==0){
-            return "Fifteen - Love";
-        }
-        if($this->resultado1==1 && $this->resultado2==1){
-            return "Fifteen all";
-        }
-        if($this->resultado1==2 && $this->resultado2==1){
-            return "Thirty - Fifteen";
-        }
-        if($this->resultado1==2 && $this->resultado2==2){
-            return "Thirty all";
-        }
-        if($this->resultado1==3 && $this->resultado2==2){
-            return "Forty - Thirty";
-        }
-        if($this->resultado1==3 && $this->resultado2==3 && $this->deuce1==1){
-            return "Ventaja";
-        }
-        if($this->resultado1==3 && $this->resultado2==3){
-            return "Deuce";
+    }
+  function  wonPoint(string $jugador) : void
+    {
+       if  ($this->jugador1->getResultado()!=3 && $this->jugador2->getResultado() != 3 ){
+           if($jugador==$this->jugador1->getNombre()){
+           $numero=$this->jugador1->getResultado();
+           $this->jugador1->setResultado($numero+1);
+       }
+           if($jugador==$this->jugador2->getNombre()){
+               $numero=$this->jugador2->getResultado();
+               $this->jugador2->setResultado($numero+1);
+           }
+       }else{
 
-        }
+       }
 
+    }
+
+    private function Deuce():string{
+        return "Deuce";
     }
 
     private function TraductorPunto(int $numero):string
@@ -71,7 +67,7 @@ class TennisGame
         if ($numero==2){
             return "Thirty";
         }
-        if ($numero==1){
+        if ($numero==3){
             return "Forty";
         }
 

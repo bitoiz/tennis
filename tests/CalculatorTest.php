@@ -13,24 +13,8 @@ final class CalculatorTest extends TestCase
     /**
      * @test
      */
-    public function DevuelvePrimerJugador(){
-        $partido =new TennisGame("M","C");
-        $result = $partido->nombre1;
-        $this->assertEquals("M", $result);
-    }
-    /**
-     * @test
-     */
-    public function DevuelveSegundoJugador(){
-        $partido =new TennisGame("M","C");
-        $result = $partido->nombre2;
-        $this->assertEquals("C", $result);
-    }
-    /**
-     * @test
-     */
     public function Resultado_0_0(){
-        $partido =new TennisGame("M","C");
+        $partido =new TennisGame("M","C",0,0);
         $result = $partido->getScore();
         $this->assertEquals("Love all", $result);
     }
@@ -76,30 +60,30 @@ final class CalculatorTest extends TestCase
         $result = $partido->getScore();
         $this->assertEquals("Forty - Thirty", $result);
     }
+
     /**
      * @test
      */
-    public function Resultado_40_40(){
-        $partido =new TennisGame("M","C",3,3);
+    public function Deuce(){
+        $partido =new TennisGame("M","C",3,2);
         $result = $partido->getScore();
         $this->assertEquals("Deuce", $result);
     }
-
     /**
      * @test
      */
-    public function ventaja1(){
-        $partido =new TennisGame("M","C",3,3,1,0);
-        $result = $partido->getScore();
-        $this->assertEquals("Ventaja", $result);
+    public function Consultarjugador1(){
+        $partido =new TennisGame("M","C",1,0);
+        $result = $partido->jugador1->getNombre();
+        $this->assertEquals("M", $result);
     }
-
     /**
      * @test
      */
-    public function Traductor (){
-        $partido =new TennisGame("M","C",3,3,1,0);
-        $result = $partido->TraductorPunto(1);
-        $this->assertEquals("Fifteen", $result);
+    public function Consultarjugador2(){
+        $partido =new TennisGame("M","C",1,0);
+        $result = $partido->jugador2->getNombre();
+        $this->assertEquals("C", $result);
     }
+
 }
