@@ -24,6 +24,14 @@ class TennisGame
         $puntuacion2=$this->TraductorPunto($this->jugador2->getResultado());
         $Resultado="";
 
+        if($puntuacion1 == "Win"){
+            $Resultado="" . $puntuacion1 ." ". $this->jugador1->getNombre();
+            return $Resultado;
+        }
+        if($puntuacion2 == "Win"){
+            $Resultado="" . $puntuacion2 ." ". $this->jugador2->getNombre();
+            return $Resultado;
+        }
         if($puntuacion1 != $puntuacion2){
             $Resultado=$Resultado . $puntuacion1 . " - " . $puntuacion2;
         }
@@ -38,18 +46,25 @@ class TennisGame
   function  wonPoint(string $jugador) : void
     {
        if  ($this->jugador1->getResultado()!=3 && $this->jugador2->getResultado() != 3 ){
-           if($jugador==$this->jugador1->getNombre()){
-           $numero=$this->jugador1->getResultado();
-           $this->jugador1->setResultado($numero+1);
-       }
-           if($jugador==$this->jugador2->getNombre()){
-               $numero=$this->jugador2->getResultado();
-               $this->jugador2->setResultado($numero+1);
-           }
+           $this->wonPointDepurado($jugador,$this->jugador1);
+           $this->wonPointDepurado($jugador,$this->jugador2);
        }else{
-
+           if($jugador==$this->jugador1->getNombre()){
+               $numero=$this->jugador1->getDeuce();
+               $this->jugador1->setDeuce($numero+1);
+           }
+           if($jugador==$this->jugador2->getNombre()){
+               $numero=$this->jugador2->getDeuce();
+               $this->jugador2->setDeuce($numero+1);
+           }
        }
 
+    }
+    function  wonPointDepurado(string $nombre , Jugador $jugador) : void{
+        if ($nombre==$jugador->getNombre()){
+            $numero=$jugador->getResultado();
+            $jugador->setResultado($numero+1);
+        }
     }
 
     private function Deuce():string{
@@ -69,6 +84,9 @@ class TennisGame
         }
         if ($numero==3){
             return "Forty";
+        }
+        if ($numero==4){
+            return "Win";
         }
 
     }

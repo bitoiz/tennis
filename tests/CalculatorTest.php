@@ -85,5 +85,13 @@ final class CalculatorTest extends TestCase
         $result = $partido->jugador2->getNombre();
         $this->assertEquals("C", $result);
     }
+    /**
+     * @test
+     */
+    public function winplayer1(){
+        $partido =new TennisGame("M","C",4,0);
+        $result = $partido->getScore();
+        $this->assertEquals("Win M", $result);
+    }
 
 }
