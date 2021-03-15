@@ -16,10 +16,10 @@ class Jugador
      * @param $resultado1
      * @param $deuce1
      */
-    public function __construct($nombre1, $resultado1)
+    public function __construct($nombre1)
     {
         $this->nombre = $nombre1;
-        $this->resultado = $resultado1;
+        $this->resultado = 0;
         $this->deuce = 0;
     }
 

@@ -14,7 +14,7 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function TestResultado_0_0(){
-        $partido =new TennisGame("M","C",0,0);
+        $partido =new TennisGame("M","C");
         $result = $partido->getScore();
         $this->assertEquals("Love all", $result);
     }
@@ -24,7 +24,7 @@ final class CalculatorTest extends TestCase
     public function TestResultado_15_0(){
         $partido =new TennisGame("M","C",0,0);
         $partido->wonPoint("M");
-        $result =(string)$partido->jugador1->getResultado();
+        $result = $partido->getScore();
         $this->assertEquals("Fifteen - Love", $result);
     }
 
@@ -32,7 +32,9 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function TestResultado_15_15(){
-        $partido =new TennisGame("M","C",1,1);
+        $partido =new TennisGame("M","C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
         $result = $partido->getScore();
         $this->assertEquals("Fifteen all", $result);
     }
@@ -40,7 +42,10 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function TestResultado_30_15(){
-        $partido =new TennisGame("M","C",2,1);
+        $partido =new TennisGame("M","C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
         $result = $partido->getScore();
         $this->assertEquals("Thirty - Fifteen", $result);
     }
@@ -49,7 +54,11 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function TestResultado_30_30(){
-        $partido =new TennisGame("M","C",2,2);
+        $partido =new TennisGame("M","C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
         $result = $partido->getScore();
         $this->assertEquals("Thirty all", $result);
     }
@@ -57,7 +66,12 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function TestResultado_40_30(){
-        $partido =new TennisGame("M","C",3,2);
+        $partido =new TennisGame("M","C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
         $result = $partido->getScore();
         $this->assertEquals("Forty - Thirty", $result);
     }
@@ -66,7 +80,13 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function TestDeuce(){
-        $partido =new TennisGame("M","C",3,2);
+        $partido =new TennisGame("M","C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
         $result = $partido->getScore();
         $this->assertEquals("Deuce", $result);
     }
@@ -76,8 +96,14 @@ final class CalculatorTest extends TestCase
     public function TestVentaja1(){
         $partido =new TennisGame("M","C",3,3);
         $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
         $result = $partido->getScore();
-        $this->assertEquals("Ventaja", $result);
+        $this->assertEquals("Ventaja M", $result);
     }
     /**
      * @test
@@ -99,7 +125,15 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function winplayer1(){
-        $partido =new TennisGame("M","C",4,0);
+        $partido =new TennisGame("M","C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("C");
+        $partido->wonPoint("M");
+        $partido->wonPoint("M");
         $result = $partido->getScore();
         $this->assertEquals("Win M", $result);
     }
