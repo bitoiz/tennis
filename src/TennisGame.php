@@ -16,20 +16,25 @@ class TennisGame
     /**
      * TennisGame constructor.
      */
-    public function __construct(string $Jugadoruno,string $jugadordos,int $nu1,int $nu2,int $num1,int $num2)
+    public function __construct(string $Jugadoruno,string $jugadordos,int $nu1,int $nu2)
     {
        $this->nombre1= $Jugadoruno;
        $this->nombre2= $jugadordos;
        $this->resultado1= $nu1;
        $this->resultado2= $nu2;
-       $this->deuce1= $num1;
-       $this->deuce2= $num2;
+
     }
 
     public function getScore(){
-        if($this->resultado1==0 && $this->resultado2==0){
-            return "Love all";
+        $puntuacion1=$this->TraductorPunto($this->resultado1);
+        $puntuacion2=$this->TraductorPunto($this->resultado2);
+        $Resultado="";
+        if($puntuacion1 != $puntuacion2){
+            $Resultado=$Resultado . $puntuacion1 . " - " . $puntuacion2;
+        } if ( $puntuacion1 == $puntuacion2){
+            $Resultado=$Resultado . $puntuacion1 . "all";
         }
+        return $Resultado;
         if($this->resultado1==1 && $this->resultado2==0){
             return "Fifteen - Love";
         }
@@ -50,12 +55,16 @@ class TennisGame
         }
         if($this->resultado1==3 && $this->resultado2==3){
             return "Deuce";
+
         }
 
     }
 
-    public function TraductorPunto(int $numero):string
+    private function TraductorPunto(int $numero):string
     {
+        if ($numero==0){
+            return "Love";
+        }
         if ($numero==1){
             return "Fifteen";
         }
