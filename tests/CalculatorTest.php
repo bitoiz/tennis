@@ -89,8 +89,17 @@ final class CalculatorTest extends TestCase
      * @test
      */
     public function ventaja1(){
-        $partido =new TennisGame("M","C",4,4);
+        $partido =new TennisGame("M","C",3,3,1,0);
         $result = $partido->getScore();
-        $this->assertEquals("Deuce", $result);
+        $this->assertEquals("Ventaja", $result);
+    }
+
+    /**
+     * @test
+     */
+    public function Traductor (){
+        $partido =new TennisGame("M","C",3,3,1,0);
+        $result = $partido->TraductorPunto(1);
+        $this->assertEquals("Fifteen", $result);
     }
 }
