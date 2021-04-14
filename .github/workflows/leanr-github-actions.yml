@@ -1,10 +1,17 @@
-name:
-on: [push]
+name: develop-push-workflow
+on:
+  push:
+    branches:
+      - main
 jobs:
-  check-bats-version:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Checkout develop
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        user: shivammathur/setup-phpv2
+        with:
+          tools: composer:v2
+          php-version: '8'
