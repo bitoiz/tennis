@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up PHP
-        user: shivammathur/setup-phpv2
+        uses: shivammathur/setup-phpv2
         with:
           tools: composer:v2
           php-version: '8'
