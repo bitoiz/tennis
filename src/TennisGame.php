@@ -51,18 +51,18 @@ class TennisGame
     {
         $aux = $this->controladordeuce();
        if  ($this->jugador1->getResultado()==3 && $this->jugador2->getResultado() == 3 && $aux<2 ){
-           $this->wonPointDeuceDepurado($jugador,$this->jugador1);
-           $this->wonPointDeuceDepurado($jugador,$this->jugador2);
+           $this->VerSiJugadorGanaPuntoEnDuece($jugador,$this->jugador1);
+           $this->VerSiJugadorGanaPuntoEnDuece($jugador,$this->jugador2);
            $aux = $this->controladordeuce();
            if($aux<2)
                $this->wonPoint($jugador);
        }else{
-           $this->wonPointDepurado($jugador,$this->jugador1);
-           $this->wonPointDepurado($jugador,$this->jugador2);
+           $this->VerSiJugadorGanaPunto($jugador,$this->jugador1);
+           $this->VerSiJugadorGanaPunto($jugador,$this->jugador2);
        }
     }
 
-    private function  wonPointDepurado(string $nombre , Jugador $jugador) : void{
+    private function  VerSiJugadorGanaPunto(string $nombre , Jugador $jugador) : void{
         if ($nombre==$jugador->getNombre()){
             $numero=$jugador->getResultado();
             $numero=$numero+1;
@@ -70,7 +70,7 @@ class TennisGame
         }
     }
 
-    private function  wonPointDeuceDepurado(string $nombre , Jugador $jugador) : void{
+    private function  VerSiJugadorGanaPuntoEnDuece(string $nombre , Jugador $jugador) : void{
         if ($nombre==$jugador->getNombre()){
             $numero=$jugador->getDeuce();
             $numero=$numero+1;

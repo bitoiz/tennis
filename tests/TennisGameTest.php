@@ -8,7 +8,7 @@ use Deg540\PHPTestingBoilerplate\Calculator;
 use PHPUnit\Framework\TestCase;
 use Deg540\PHPTestingBoilerplate\TennisGame;
 
-final class CalculatorTest extends TestCase
+final class TennisGameTest extends TestCase
 {
     /**
      * @test
