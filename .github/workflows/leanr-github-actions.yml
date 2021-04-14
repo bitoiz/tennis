@@ -10,7 +10,7 @@ jobs:
       - name: Checkout develop
         uses: actions/checkout@v2
 
-      - name: Set up PHP
+      - name: Setup PHP
         uses: shivammathur/setup-phpv2
         with:
           tools: composer:v2
