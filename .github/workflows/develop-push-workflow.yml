@@ -15,3 +15,9 @@ jobs:
         with:
           tools: composer:v2
           php-version: '8'
+
+      - name: Install proyect dependencies
+        run: composer install
+
+      - name: Run validate Test
+        uses: ./vendor/bin/phpunit -c phpunit.xml
